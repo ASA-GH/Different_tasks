@@ -14,6 +14,7 @@
 /* !---!---header---!---! */
 
 .header{
+  z-index: 5;
   display: grid;
   align-items: center;
   justify-items: center;
@@ -64,14 +65,14 @@
 /* !---!---searchBar---!---! */
 
 .searchBar{
-  /* background: lawngreen; */
+  background: #fff;
+  position: sticky;
+  top: 0;
   width: 100%;
   height: 80px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   display: grid;
   justify-items: center;
-  /* align-items: end; */
-  /* padding-bottom: 21px; */
 }
 
 .searchBar form{
@@ -111,7 +112,6 @@
   /* background: red; */
 } 
 .wrapInput label{
-  background-color: yellowgreen;
   color: #888;
   height: 29px;
   font-size: 16px;
@@ -176,8 +176,24 @@
   grid-template-columns: repeat(3, 300px);
   justify-content: space-between;
   align-self: start;
+  grid-row-gap: 20px;
+  margin-bottom: 48px;
+}
+.product h4{
+  margin-block-start: 0;
+  margin-block-end: 0.5em;
+  font-size: 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
 }
 
+.product p{
+  margin-block-start: 0;
+  margin-block-end: 0;
+  font-size: 12px;
+}
 /* !---!---footer---!---! */
 
 .footer{
