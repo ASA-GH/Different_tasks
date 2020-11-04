@@ -117,6 +117,11 @@
   font-size: 14px;
   transform:translateY(-20px);
 }
+.wrapInput input:disabled{
+  color: #888;
+  background-color: transparent;
+  
+}
 .wrapInput input:not(:invalid):required+label {
   font-size: 14px;
   transform:translateY(-20px);
