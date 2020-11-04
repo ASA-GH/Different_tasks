@@ -70,52 +70,56 @@
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   display: grid;
   justify-items: center;
-  align-items: end;
-  padding-bottom: 21px;
+  /* align-items: end; */
+  /* padding-bottom: 21px; */
 }
 
 .searchBar form{
   /* background: palegreen; */
-  background-color: #fff;
+  background: transparent;
   max-width: 1000px;
   width: 100%;
-  /* height: max-content; */
+  height: 100%;
   display: grid;
   justify-content: space-between;
   grid-template-columns: repeat(3, max-content);
-  /* align-items: end;
-  padding-bottom: 21px; */
+/* align-items: end; */
+/* align-content: end; */
+   /*  padding-bottom: 21px; */
 
 }
 .wrapInput{
   display: grid;
 }
 .wrapInput input{
+ padding: 0;
+ /* margin-bottom: 20px; */
+ height: 28px;
  width: 350px;
  font-size: 16px;
  border-style: none none solid none;
  border-color: #E5E5E5;
  border-width: 1px;
  outline: none;
- transform:translateY(20px);
-}
-.wrapInput input::placeholder{
-  color: #888;
-  font-size: 16px;
+ transform:translateY(30px);
+ background: transparent;
 }
 .wrapInput input:focus{
   border-style: none none solid none;
   border-color: #5DA9E0;
   border-width: 1px;
+  /* background: red; */
 } 
 .wrapInput label{
+  background-color: yellowgreen;
   color: #888;
+  height: 29px;
   font-size: 16px;
-  transform:translateY(0);
+  transform:translateY(-4px);
 }
 .wrapInput input:focus+label{
   font-size: 14px;
-  transform:translateY(-20px);
+  transform:translateY(-21px);
 }
 .wrapInput input:disabled{
   color: #888;
@@ -124,7 +128,7 @@
 }
 .wrapInput input:not(:invalid):required+label {
   font-size: 14px;
-  transform:translateY(-20px);
+  transform:translateY(-21px);
 }
 
 .searchBar form button{
@@ -136,6 +140,7 @@
   height: 32px;
   font-size: 14px;
   align-self: end;
+  margin-bottom: 21px;
 }
 .searchBar form button:disabled{
  background: #E5E5E5;
@@ -155,10 +160,22 @@
   max-width: 1000px;
   height: 100%;
   width: 100%;
+  display: grid;
+  grid-template-rows: 56px max-content;
+
+}
+.progress{
+  justify-self: center;
+  align-self: center;
+  color: #5DA9E0;
+  font-size: 14px;
 }
 
-.text{
-background: gold;
+.wrapproduct{
+  display: grid;
+  grid-template-columns: repeat(3, 300px);
+  justify-content: space-between;
+  align-self: start;
 }
 
 /* !---!---footer---!---! */
