@@ -1,0 +1,18 @@
+.wrapperApp {
+display: grid;
+justify-items: center;
+align-items: center;
+width: 100vw;
+height:100vh;
+background:#191e2a;
+
+
+}
+.innerApp{
+  width: 90%;
+  height: 90%;
+  background: #232834;
+  display: grid;
+  grid-template-columns: 20% 74%;
+  justify-content: space-evenly;
+}

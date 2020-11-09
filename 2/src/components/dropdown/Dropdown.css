@@ -1,0 +1,39 @@
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: max-content;
+}
+.dropdownToggler {
+  width: max-content;
+  background: transparent;
+  outline: none;
+  cursor: pointer;
+  color: #cbccc6;
+}
+.dropdownToggler:active {
+  opacity: 0.5;
+}
+.dropdown-menu {
+  list-style: none;
+  padding-left: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin: 0;
+  z-index: 50;
+}
+.dropdown-menu-item {
+  width: 200px;
+  background: #cbccc6;
+  padding: 6px 12px;
+  color: black;
+  border: 1px solid #191e2a;
+  outline: none;
+  font-size: 16px;
+  cursor: pointer;
+
+}
+.dropdown-menu-item:active {
+  opacity: 0.5;
+}
