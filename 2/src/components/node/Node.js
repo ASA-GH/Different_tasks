@@ -17,12 +17,22 @@ export default class Node{
 
   createChild(parentId) {
     if (this.id == parentId) {
-      this.add(new Node(""));
+      this.add(new Node("new node"));
     } else {
       this.children.map((node) => {
         node.createChild(parentId);
       })
     }
   }
-  find(id){}
+  
+  deleteChild(id) {
+    for (let i in this.children) {
+      if (this.children[i].id == id) {
+        this.children.splice(i, 1);
+        return;
+      }
+      this.children[i].deleteChild(id);
+    }
+  }
+
 }

@@ -9,21 +9,28 @@ const App = () => {
 const [tree, setTree] = useState(new Tree());
 
   const addNode = (id) =>{
- console.log(id)
- tree.createNode(id)
-
- setTree(tree)
- console.log("new tree")
- console.log(tree)
+    tree.createNode(id)
+    setTree(tree)
   }
+  const deleteNode = (id) =>{
+    if (!tree.deleteChild(id))
+      return false;
+
+    setTree(tree)
+    return true;
+  }
+
   const useMemoTree = useMemo(() => {
   return (
     <div className="wrapperApp">
       <div className="innerApp">
-       <TreeView tree ={tree} addNode={addNode}/>
+        <div className="header"/>
+        <div className="content">
+       <TreeView tree ={tree} addNode={addNode} deleteNode={deleteNode}/>
        <NodeEditView />
+       </div>
+       <div className="footer"/>
       </div>
-       
     </div>
   );
 }, [tree]);

@@ -1,3 +1,9 @@
 .treeView{
-  background: #1f2430;
+  /* background: #1f2430; */
+  background: #34538a;
+  height: 640px;
+  width: 284px;
+  display: grid;
+  /* justify-items: end; */
+
 }

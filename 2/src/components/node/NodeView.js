@@ -13,6 +13,32 @@ export default function NodeView  (props) {
   const [expanded, setExpanded] = useState(false);
   const [dropdown, setDropdown] = useState(undefined)
   const [nodeEdit, setNodeEdit] = useState("nodeEdit");
+  const [updateNode, setUpdateNode] = useState(false);
+
+  const update = () => {
+    setUpdateNode(!updateNode);
+  }
+
+  const add = (id) =>{
+    props.addNode(id)
+
+    if(!expanded)
+      setExpanded(true);
+    else
+      update();
+  };
+
+  const remove = (id) =>{
+    if(props.deleteNode(id))
+      props.parentUpdate();
+  }
+
+  const handler = (id, action) => {
+    if ("add" == action)
+      add(id);
+    else
+      remove(id);
+  }
 
   const prepare = () => {
     let children = [];
@@ -22,20 +48,14 @@ export default function NodeView  (props) {
     props.node.children.map(node => {
       children.push( <NodeView key = {node.id} 
         size = {props.size} level = {props.level+1} 
-        node ={node} addNode={props.addNode}/>);
+        node ={node} addNode={props.addNode} deleteNode={props.deleteNode} parentUpdate={update} isRoot={props.isRoot}/>);
       })
     return children;
   }
-  // console.log(dropdown)
-
-   const open = (e)=>{ 
-     e.preventDefault();
-     setDropdown(!dropdown)
-    }
-
+ 
   const renderNode = () => {
    
-   
+
     const pointer = () =>{
       if(!props.node.children.length){}
       else
@@ -59,7 +79,8 @@ export default function NodeView  (props) {
       onContextMenu={v => setDropdown(v)}
       onClick={() => setNodeEdit(!nodeEdit)}
       id={props.node.id}
-      addNode={props.addNode}
+      handler={handler}
+      isRoot={props.isRoot}
     />
     </div>
     { prepare() }
@@ -70,7 +91,7 @@ export default function NodeView  (props) {
 const useMemoNode = useMemo(() => {
 
     return <div>{renderNode()}</div>;
-  }, [expanded, props]);
+  }, [expanded, props, updateNode]);
 
    return useMemoNode;
   }

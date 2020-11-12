@@ -9,10 +9,11 @@
   background: transparent;
   outline: none;
   cursor: pointer;
-  color: #cbccc6;
+  color: #f0ece3;
+  font-size: 16px;
 }
 .dropdownToggler:active {
-  opacity: 0.5;
+  /* opacity: 0.5; */
 }
 .dropdown-menu {
   list-style: none;
@@ -25,15 +26,16 @@
 }
 .dropdown-menu-item {
   width: 200px;
-  background: #cbccc6;
+  background: #F0ECE3;
   padding: 6px 12px;
   color: black;
-  border: 1px solid #191e2a;
+  border: 0.5px solid #34538a;
   outline: none;
   font-size: 16px;
   cursor: pointer;
 
 }
-.dropdown-menu-item:active {
-  opacity: 0.5;
+.dropdown-menu-item:hover {
+  background: #bed441;
+
 }

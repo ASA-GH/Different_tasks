@@ -1,9 +1,10 @@
 .nodeView{
-background: transparent;
+background:  transparent;
 display: grid;
 align-items: center;
 grid-template-columns: repeat(3, max-content);
 }
+
 .nodeName{
   color:red;
   width: max-content;
@@ -14,8 +15,15 @@ grid-template-columns: repeat(3, max-content);
 }
 
 .nodeView:hover{
-    background: #191e2a;
+    background: #3c4041;
 }
+.nodeView:focus{
+  background: #3c4041;
+}
+.nodeView:active{
+  background: #3c4041;
+}
+
 
 .expand{
   background: transparent;
@@ -25,28 +33,80 @@ grid-template-columns: repeat(3, max-content);
   padding: none;
   margin: none;
   outline: none;
+  cursor: pointer;
  
 }
 .expand:disabled{
   background: transparent;
+  cursor: default;
 }
-.nodeEditView{
-  background:#232834;
+  .nodeEditView{
+  background: #F0ECE3;
+  /* background:#f0ece3; */
+  height:640px;
+  width: 700px;
+  display: grid;
+  justify-items: center;
+  /* align-content: space-between; */
+  grid-template-rows: repeat(3, max-content);
+}
+.horizontalLine1{
+  height:4px;
+  width: 668px;
+  background: #34538a;
+  align-self: start;
+}
+
+.horizontalLine2{
+  height:4px;
+  width: 668px;
+  background: #34538a;
+  align-self: end;
+
 
 }
+
+/* !-----nodeEdit-----! */
+
+.nodeEdit{
+  width: 546px;
+  /* background-color: blue; */
+  background-color: #F0ECE3;
+  min-height:632px;
+}
+
 .nodeEditName{
-  color: #cbccc6;
-  background:#1f2430;
-  height: 100px;
+  color: #3C4041;
+  /* color: #cbccc6; */
+  background:#F0ECE3;
+  height: 80px;
   display: grid;
-  align-items: center;
-  justify-items: center;
 } 
-.nodeEditName button{
+.nodeEditName h4{
+ font-size: 24px;
+ margin-block-start: 1em;
+ margin-block-end: 1em;
+ font-weight: normal;
+}
+.nodeEditContent{
+  min-height: 512px;
+  height: max-content;
+  /* box-shadow: 0 0 6px 0 rgba(0,0,0,.04), 
+              0 4px 10px 0 rgba(13,35,67,.25);
+ */
+}
+.space{
+  height: 40px;
+  background:#F0ECE3;
+
+}
+
+/* .nodeEditName button{
   width: 30px;
   height: 30px;
 
-} 
+}  */
+/* !-----searchBar-----! */
 
 .searchBar{
   background: #cbccc6;

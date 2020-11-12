@@ -31,11 +31,12 @@ const Dropdown = (props) => {
     // outside click
     setOpen(false);
   };
-  const add = (e, id, addNode) =>{
 
- //console.log(node)
- addNode(id)
+  const handler = (id, nodeHandler, action) =>{
+    setOpen(false);
+    nodeHandler(id, action);
   }
+
   const syntheticFunction = e => {
     setOpen(!open);
     e.preventDefault()
@@ -45,6 +46,8 @@ const Dropdown = (props) => {
   //   setOpen(false);
   // };
   useEffect(() => {
+
+    
     if (open) {
       document.addEventListener("mousedown", handleClickOutside);
     } else {
@@ -61,13 +64,11 @@ const Dropdown = (props) => {
       <div className="dropdownToggler"  onContextMenu={e => syntheticFunction(e)}>
        {props.value || props.placeholder}
       </div>
-      {open && (
+      {open && ( 
         <ul className="dropdown-menu">
-            <li className="dropdown-menu-item" onClick={e=>add(e, props.id, props.addNode)}>Add</li>
-            <li className="dropdown-menu-item" >Rename</li>
+            <li className="dropdown-menu-item" onClick={e=>handler(props.id, props.handler, "add")}>Add</li>
             <li className="dropdown-menu-item" >Export</li>
-            <li className="dropdown-menu-item" >Delete</li>
-
+            {props.isRoot(props.id)? null :<li className="dropdown-menu-item" onClick={e=>handler(props.id, props.handler, "delete")}>Delete</li>}
         </ul>
       )}
     </div>
