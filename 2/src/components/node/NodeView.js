@@ -1,11 +1,11 @@
 import React, {useMemo, useState,} from 'react';
 import './Node.css';
-import './../dropdown/Dropdown.css'
-import Node from './Node';
-import Tree from './../tree/Tree';
+// import './../dropdown/Dropdown.css'
+// import Node from './Node';
+// import Tree from './../tree/Tree';
 import Dropdown from './../dropdown/Dropdown';
-import chevronDown from './../../img/chevronDown.svg'
-import chevronRight from './../../img/chevronRight.svg'
+import imgChevronDown from './../../img/chevronDown.svg'
+import imgChevronRight from './../../img/chevronRight.svg'
 
 
 export default function NodeView  (props) {
@@ -33,6 +33,10 @@ export default function NodeView  (props) {
       props.parentUpdate();
   }
 
+  const select = (e) =>{
+    props.selectNode(props.node)
+  }
+
   const handler = (id, action) => {
     if ("add" == action)
       add(id);
@@ -46,9 +50,10 @@ export default function NodeView  (props) {
       return children;
     
     props.node.children.map(node => {
-      children.push( <NodeView key = {node.id} 
+      children.push( <NodeView id = {node.id} 
         size = {props.size} level = {props.level+1} 
-        node ={node} addNode={props.addNode} deleteNode={props.deleteNode} parentUpdate={update} isRoot={props.isRoot}/>);
+        node ={node} addNode={props.addNode} deleteNode={props.deleteNode} parentUpdate={update} isRoot={props.isRoot}
+        selectNode={props.selectNode}/>);
       })
     return children;
   }
@@ -59,9 +64,10 @@ export default function NodeView  (props) {
     const pointer = () =>{
       if(!props.node.children.length){}
       else
-     {let chevron = !expanded ? <img src ={chevronRight} alt="a"/> : <img src ={chevronDown} alt="b"/>
+     {let chevron = !expanded ? <img src ={imgChevronRight} alt="a"/> : <img src ={imgChevronDown} alt="b"/>
       return chevron
     }}
+
     
     return (
       <div className = "wrapNode">
@@ -77,7 +83,7 @@ export default function NodeView  (props) {
       placeholder={props.node.name}
       value={dropdown}
       onContextMenu={v => setDropdown(v)}
-      onClick={() => setNodeEdit(!nodeEdit)}
+      selectNode={select}
       id={props.node.id}
       handler={handler}
       isRoot={props.isRoot}

@@ -13,9 +13,9 @@ const TreeView = (props) =>{
 
   return ( 
      <div className="treeView">
-    <NodeView key = {props.tree.root.id} size = {size} 
+    <NodeView id = {props.tree.root.id} size = {size} 
     level = {level} node ={props.tree.root} 
-    addNode={props.addNode} deleteNode={props.deleteNode} isRoot={isRoot}/>
+    addNode={props.addNode} deleteNode={props.deleteNode} isRoot={isRoot} selectNode={props.selectNode}/>
     </div>
   )}
 

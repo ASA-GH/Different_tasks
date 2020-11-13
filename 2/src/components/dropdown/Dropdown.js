@@ -1,22 +1,7 @@
-// import React from 'react';
-// import './Dropdown.css';
 
-// const Dropdown = () =>{
-//   console.log("Dropdown")
-// return (
-// <div className="wrapDropdown" >
-//   <ul>
-//     <li>Add</li>
-//     <li>Delete</li>
-//   </ul>
-// </div>
-// )
-// }
-// export default Dropdown;
 import React, { useEffect, useState, useRef } from "react";
-
-// const Dropdown = ({ value, options, placeholder = "Select", onChange }) => {
-const Dropdown = (props) => {
+import './Dropdown.css';
+ const Dropdown = (props) => {
 
   const node = useRef();
 
@@ -41,10 +26,7 @@ const Dropdown = (props) => {
     setOpen(!open);
     e.preventDefault()
   };
-  // const handleChange = selectedValue => {
-  //   onChange(selectedValue);
-  //   setOpen(false);
-  // };
+
   useEffect(() => {
 
     
@@ -61,7 +43,7 @@ const Dropdown = (props) => {
 
   return (
     <div ref={node} className="dropdown">
-      <div className="dropdownToggler"  onContextMenu={e => syntheticFunction(e)}>
+      <div className="dropdownToggler"  onContextMenu={e => syntheticFunction(e)} onClick = {props.selectNode}>
        {props.value || props.placeholder}
       </div>
       {open && ( 

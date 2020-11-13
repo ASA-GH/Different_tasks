@@ -4,7 +4,7 @@
  export default class Tree {
     root = {};
     constructor (){
-      this.root = new Node("..")
+      this.root = new Node(". .")
       for (let i=0; i < 5; i++) {
         let name = "test-" + i;
         let node = new Node(name);
@@ -18,11 +18,17 @@
       this.root.createChild(parentId)
     }
 
-    deleteChild(id){
+    deleteNode(id){
       if (this.root.id == id)
         return false;
       this.root.deleteChild(id);
       return true;
+    }
+
+    renameNode(id, name){
+      if (this.root.id == id)
+        return null;
+      return this.root.renameChild(id, name);
     }
    
 }

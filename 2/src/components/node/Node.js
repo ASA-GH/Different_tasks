@@ -25,6 +25,21 @@ export default class Node{
     }
   }
   
+  renameChild(id, name){
+    for (let i in this.children) {
+      if (this.children[i].id == id) {
+        this.children[i].name = name;
+        return this.children[i];
+      }
+       let res = this.children[i].renameChild(id, name);
+       if (res)
+         return res;
+    }
+    return null;
+  }
+
+
+
   deleteChild(id) {
     for (let i in this.children) {
       if (this.children[i].id == id) {
