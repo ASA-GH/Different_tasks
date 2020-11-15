@@ -8,8 +8,8 @@ const [close, setClose] = useState(false);
 console.log(props)
   return (
     <div className="Attribute">
-      <input placeholder ="-Name-" className = "inputName" defaultValue = "New attribute"/>
-      <input placeholder ="-Value-" className = "inputValue"/>
+      <input placeholder ="-Name-" value={props.name} className = "inputName" />
+      <input placeholder ="-Value-" value={props.value}  className = "inputValue"/>
       <button className = "Close" 
               // disabled = {!props.node.children.length} 
           onClick={() => setClose(!close)} >

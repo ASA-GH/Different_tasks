@@ -11,6 +11,9 @@
   cursor: pointer;
   color: #f0ece3;
   font-size: 16px;
+  min-width: 50px;
+  min-height: 16px;
+
 }
 .dropdownToggler:active {
   /* opacity: 0.5; */

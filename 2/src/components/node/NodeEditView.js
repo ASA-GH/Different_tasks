@@ -6,7 +6,7 @@ const NodeEditView = (props) =>{
 
 return <div className="nodeEditView">
   <div className = "horizontalLine1"/>
-  <NodeEdit selectedNode={props.selectedNode} renameNode={props.renameNode}/>
+  <NodeEdit selectedNode={props.selectedNode} renameNode={props.renameNode} registration={props.registration}/>
   {/* <div className ="space"></div> */}
   <div className = "horizontalLine2"/>
   </div>

@@ -8,6 +8,10 @@
       for (let i=0; i < 5; i++) {
         let name = "test-" + i;
         let node = new Node(name);
+        // var size = Object.keys(myObject).length
+        node.attributes["a"+ i] = "c"+i;
+        node.attributes["b" + i] = "e"+i;
+
         for (let j=0; j < 5; j++) {
           node.add (new Node(name + "-" + j));
         }
@@ -30,5 +34,16 @@
         return null;
       return this.root.renameChild(id, name);
     }
-   
+    createAttribute(nodeId, attributeKey){
+      this.root.createAttribute(nodeId, attributeKey)
+    }
+    deleteAttribute(nodeId, attributeKey){
+      this.root.deleteAttribute(nodeId, attributeKey)
+    }
+    changeAttributeKey = (nodeId, oldAttributeKey, newAttributeKey) =>{
+      this.root.changeAttributeKey(nodeId, oldAttributeKey, newAttributeKey)
+    }
+    changeAttributeValue = (nodeId, attributeKey, attributeValue) =>{
+      this.root.changeAttributeValue(nodeId, attributeKey, attributeValue)
+    }
 }

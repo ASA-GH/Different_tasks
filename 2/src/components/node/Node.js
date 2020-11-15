@@ -4,7 +4,7 @@ export default class Node{
   id = "";
   name = "";
   children = [];
-  field = {};
+  attributes = {};
 
   constructor(name){
     this.name = name;
@@ -38,8 +38,6 @@ export default class Node{
     return null;
   }
 
-
-
   deleteChild(id) {
     for (let i in this.children) {
       if (this.children[i].id == id) {
@@ -48,6 +46,44 @@ export default class Node{
       }
       this.children[i].deleteChild(id);
     }
+  }
+  
+  createAttribute(nodeId, attributeKey){
+    if (this.id == nodeId){
+      this.attributes[attributeKey] = "new value";
+      return;
+    }
+    this.children.map((node) => {
+      node.createAttribute(nodeId, attributeKey);
+    })
+  }
+  deleteAttribute(nodeId, attributeKey){
+    if (this.id == nodeId){
+      delete this.attributes[attributeKey];
+      return;
+    }
+    this.children.map((node) => {
+      node.deleteAttribute(nodeId, attributeKey);
+    })
+  }
+  changeAttributeKey = (nodeId, oldAttributeKey, newAttributeKey) =>{
+    if (this.id == nodeId){
+      this.attributes[newAttributeKey] = this.attributes[oldAttributeKey];
+      delete this.attributes[oldAttributeKey];
+      return;
+    }
+    this.children.map((node) => {
+      node.changeAttributeKey(nodeId, oldAttributeKey, newAttributeKey);
+    })
+  }
+  changeAttributeValue = (nodeId, attributeKey, attributeValue) =>{
+    if (this.id == nodeId){
+      this.attributes[attributeKey] = attributeValue;
+      return;
+    }
+    this.children.map((node) => {
+      node.changeAttributeValue(nodeId, attributeKey, attributeValue);
+    })
   }
 
 }

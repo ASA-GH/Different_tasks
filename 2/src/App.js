@@ -1,7 +1,7 @@
 import React, {useState, useMemo}from 'react';
 import TreeView from "./components/tree/TreeView"
 import Tree from "./components/tree/Tree.js"
-import NodeEditView from "./components/node/NodeEditView"
+import NodeEdit from "./components/node/NodeEdit"
 
 import './App.css';
 
@@ -9,10 +9,13 @@ const App = () => {
 const [tree, setTree] = useState(new Tree());
 const [selectedNode, setSelectedNode] = useState({});
 
-  const addNode = (id) =>{
+let event = {};
+
+const addNode = (id) =>{
     tree.createNode(id)
     setTree(tree)
   }
+
   const deleteNode = (id) =>{
     if (!tree.deleteNode(id))
       return false;
@@ -23,8 +26,8 @@ const [selectedNode, setSelectedNode] = useState({});
 
   const selectNode = (node) => {
     setSelectedNode(node)
-
-
+    if (event["onSelect"])
+      event["onSelect"](node);
   }
 
   const renameNode = (id, name) =>{
@@ -33,15 +36,37 @@ const [selectedNode, setSelectedNode] = useState({});
     if (!node)
       return false;
       console.log("2");
-    // setSelectedNode(node)
+    setSelectedNode(node)
     setTree(tree)
-/*
-    let element = document.querySelector(id)
-    console.log(element);
-    */
-    // update = ()
+    if (event["updateById"])
+      event["updateById"](id);
     return true;
   }
+
+  const registration = (id, func) => {
+    event[id] = func;
+  }
+const addAttribute = (nodeId, attributeKey) =>{
+    tree.createAttribute(nodeId, attributeKey)
+    setTree(tree)
+  }
+  
+  const deleteAttribute = (nodeId, attributeKey) =>{
+   tree.deleteAttribute(nodeId, attributeKey);
+      
+    setTree(tree)
+    return;
+  }
+  const changeAttributeKey = (nodeId, oldAttributeKey, newAttributeKey) =>{
+    tree.changeAttributeKey(nodeId, oldAttributeKey, newAttributeKey)
+    setTree(tree)
+  }
+  const changeAttributeValue = (nodeId, attributeKey, attributeValue) =>{
+    tree.changeAttributeValue(nodeId, attributeKey, attributeValue)
+    setTree(tree)
+  }
+
+
 
   const useMemoTree = useMemo(() => {
   return (
@@ -49,8 +74,8 @@ const [selectedNode, setSelectedNode] = useState({});
       <div className="innerApp">
         <div className="header"/>
         <div className="content">
-       <TreeView tree ={tree} addNode={addNode} deleteNode={deleteNode} selectNode={selectNode}/>
-       <NodeEditView selectedNode={selectedNode} renameNode={renameNode}/>
+       <TreeView tree ={tree} addNode={addNode} deleteNode={deleteNode} selectNode={selectNode} registration={registration}/>
+       <NodeEdit selectedNode={selectedNode} renameNode={renameNode} registration={registration}/>
        </div>
        <div className="footer"/>
       </div>

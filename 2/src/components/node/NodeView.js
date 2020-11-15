@@ -15,10 +15,26 @@ export default function NodeView  (props) {
   const [nodeEdit, setNodeEdit] = useState("nodeEdit");
   const [updateNode, setUpdateNode] = useState(false);
 
+  let updateByIds = [];
+
+  const registration = (updateById) => {
+    updateByIds.push(updateById);
+  }
+
   const update = () => {
     setUpdateNode(!updateNode);
   }
 
+  const updateById = (id) => {
+
+    if (props.node.id == id) {
+      setUpdateNode(!updateNode);
+      return;
+    }
+    for (let i in updateByIds) {
+      updateByIds[i](id);
+    }
+  }
   const add = (id) =>{
     props.addNode(id)
 
@@ -28,7 +44,7 @@ export default function NodeView  (props) {
       update();
   };
 
-  const remove = (id) =>{
+  const remove = (id) => {
     if(props.deleteNode(id))
       props.parentUpdate();
   }
@@ -45,6 +61,9 @@ export default function NodeView  (props) {
   }
 
   const prepare = () => {
+
+    props.registration(updateById);
+
     let children = [];
     if (!expanded) 
       return children;
@@ -53,22 +72,19 @@ export default function NodeView  (props) {
       children.push( <NodeView id = {node.id} 
         size = {props.size} level = {props.level+1} 
         node ={node} addNode={props.addNode} deleteNode={props.deleteNode} parentUpdate={update} isRoot={props.isRoot}
-        selectNode={props.selectNode}/>);
+        selectNode={props.selectNode} registration={registration}/>);
       })
+
     return children;
   }
  
   const renderNode = () => {
-   
-
     const pointer = () =>{
       if(!props.node.children.length){}
       else
      {let chevron = !expanded ? <img src ={imgChevronRight} alt="a"/> : <img src ={imgChevronDown} alt="b"/>
       return chevron
     }}
-
-    
     return (
       <div className = "wrapNode">
       <div className = "nodeView">
