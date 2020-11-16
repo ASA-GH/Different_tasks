@@ -9,35 +9,81 @@ const NodeEdit = (props) =>{
 const [plus, setPlus] = useState(false);
 const [current, setCurrent] = useState(props.selectedNode);
 const [input, setInput] = useState(current.name);
+const [updateAttribute, setUpdateAttribute] = useState(false);
+const [disabled, setDisabled] = useState(true);
 
-let  stringName ="Node name"
+
+let stringName ="Node name"
 let stringAttribute = "Attributes"
 let value = "";
-const inputEl = useRef(null);
+  const inputEl = useRef(null);
+let updateByIds = [];
 
+const registration = (updateById) => {
+    updateByIds.push(updateById);
+  }
  
+  const update = () => {
+    setUpdateAttribute(!updateAttribute);
+  }
+
+  const updateById = (id) => {
+
+    if (props.node.id == id) {
+      setUpdateAttribute(!updateAttribute);
+      return;
+    }
+    for (let i in updateByIds) {
+      updateByIds[i](id);
+    }
+  }
+  const createNameAttribute = (node)=>{
+    let i = 1;
+    while (true) {
+      let name = "new attribute " + i;
+      if (!Object.keys(node.attributes).includes(name))
+        return name;
+      i++;
+    }
+  }
+
+  const deleteAttribute = (nodeId, attributeKey) =>{
+    props.deleteAttribute(nodeId, attributeKey)
+    update();
+  };
+
+  const addAttributes = (node) =>{
+    props.addAttribute(node.id, createNameAttribute(node))
+    if(!plus)
+    setPlus(true);
+    else
+      update();
+  };
+
 const select = (node) =>{
   setCurrent(node);
-  setInput(node.name)
+  setInput(node.name);
+  setDisabled(false)
 }
-
-const onChange = (e) =>{
-  if (current && current.name != e.target.value) {
-    props.renameNode(current.id, e.target.value)
-    // inputEl.current.value = props.selectedNode.name;
-  }
-}
-
 
 const pointerPlus = () =>{
  let chevron = !plus ? <img src ={imgPlusBlue} alt="+"/> : <img src ={imgPlusGreen} alt="-"/>
   return chevron
-  
 }
 
-const prepareAttributes = () => {
-  // props.registration(updateById);
+const handler = (node, action) => {
+  if ("add" == action){
+    addAttributes(node);
+  }
+}
+const syntheticFunction = e => {
+  props.renameNode(current.id, e.target.value)
+  setInput(e.target.value)
+};
 
+
+const prepareAttributes = () => {
+  registration(updateById);
   let attributes = [];
   if (!current.attributes)
     return attributes;
@@ -46,13 +92,16 @@ const prepareAttributes = () => {
   
   for (let i in keys){
     let name = keys[i]
-    attributes.push(<Attribute name={name} value={current.attributes[name]}/>)
+    attributes.push(<Attribute node={current} name={name} value={current.attributes[name]}  
+                               deleteAttribute={deleteAttribute} 
+                               changeAttributeKey={props.changeAttributeKey} 
+                               changeAttributeValue={props.changeAttributeValue}/>)
   }
 
   return attributes;
 }
-
 props.registration("onSelect", select);
+registration("add", addAttributes);
 
 return (
 <div className="nodeEditView">
@@ -60,8 +109,7 @@ return (
 <div className="nodeEdit">
 <div className= "nodeEditName">
 <span>{stringName}</span>
-{/* <input className = "inputName" onChange={onChange} id = "inputName" ref={inputEl} value={value}/> */}
-<input className = "inputName" value={input} onInput={e => setInput(e.target.value)} onChange={onChange}/>
+<input className = "inputName" value={input} onInput={e => syntheticFunction(e)} disabled={disabled}/>
 </div>
 <div className= "nodeEditAttribute">
   <h4>{stringAttribute}</h4>
@@ -74,9 +122,8 @@ return (
   </div>
   <div className = "attributesContent" >
    { prepareAttributes() } 
-  <button className = "Plus" 
-              // disabled = {!props.node.children.length} 
-          onClick={() => setPlus(!plus)} >
+  <button className = "Plus" disabled = {disabled}
+          onClick={e=>handler(current, "add")} >
           {pointerPlus()}
           </button>
   </div>
@@ -85,6 +132,5 @@ return (
 <div className = "horizontalLine2"/>
   </div>
 )
-
 }
 export default NodeEdit;

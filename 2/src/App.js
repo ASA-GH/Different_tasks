@@ -57,7 +57,7 @@ const addAttribute = (nodeId, attributeKey) =>{
     setTree(tree)
     return;
   }
-  const changeAttributeKey = (nodeId, oldAttributeKey, newAttributeKey) =>{
+  const changeAttributeKey =(nodeId, oldAttributeKey, newAttributeKey)  =>{
     tree.changeAttributeKey(nodeId, oldAttributeKey, newAttributeKey)
     setTree(tree)
   }
@@ -66,8 +66,6 @@ const addAttribute = (nodeId, attributeKey) =>{
     setTree(tree)
   }
 
-
-
   const useMemoTree = useMemo(() => {
   return (
     <div className="wrapperApp">
@@ -75,7 +73,8 @@ const addAttribute = (nodeId, attributeKey) =>{
         <div className="header"/>
         <div className="content">
        <TreeView tree ={tree} addNode={addNode} deleteNode={deleteNode} selectNode={selectNode} registration={registration}/>
-       <NodeEdit selectedNode={selectedNode} renameNode={renameNode} registration={registration}/>
+       <NodeEdit selectedNode={selectedNode} renameNode={renameNode} registration={registration} addAttribute={addAttribute} 
+                 deleteAttribute={deleteAttribute} changeAttributeKey={changeAttributeKey} changeAttributeValue={changeAttributeValue}/>
        </div>
        <div className="footer"/>
       </div>

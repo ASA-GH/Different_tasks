@@ -66,16 +66,19 @@ export default class Node{
       node.deleteAttribute(nodeId, attributeKey);
     })
   }
+
   changeAttributeKey = (nodeId, oldAttributeKey, newAttributeKey) =>{
     if (this.id == nodeId){
-      this.attributes[newAttributeKey] = this.attributes[oldAttributeKey];
+      let v = this.attributes[oldAttributeKey];
       delete this.attributes[oldAttributeKey];
+      this.attributes[newAttributeKey] = v;
       return;
     }
     this.children.map((node) => {
       node.changeAttributeKey(nodeId, oldAttributeKey, newAttributeKey);
     })
   }
+
   changeAttributeValue = (nodeId, attributeKey, attributeValue) =>{
     if (this.id == nodeId){
       this.attributes[attributeKey] = attributeValue;
