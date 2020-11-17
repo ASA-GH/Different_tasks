@@ -46,7 +46,9 @@
 
 .Attribute input:focus{
   border-style: none none solid none;
-  border-color: #84cb53;
+  border-color: #fff;
+  /* border-color: #f46f60;
+ */
   border-width: 3px;
   /* background: red; */
 } 

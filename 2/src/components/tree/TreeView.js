@@ -23,10 +23,12 @@ const TreeView = (props) =>{
   props.registration ("updateById", updateById);
   return ( 
     <div className="treeView">
+      <div className="innerTreeView">
       <NodeView id={props.tree.root.id} size={size}
       level={level} node={props.tree.root} addNode={props.addNode}
       deleteNode={props.deleteNode} isRoot={isRoot}
       registration={registration} selectNode={props.selectNode}/>
+    </div>
     </div>
   )}
 

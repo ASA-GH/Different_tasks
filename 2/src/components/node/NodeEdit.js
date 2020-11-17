@@ -14,7 +14,7 @@ const [disabled, setDisabled] = useState(true);
 
 
 let stringName ="Node name"
-let stringAttribute = "Attributes"
+let stringAttribute = "- Attributes -"
 let value = "";
   const inputEl = useRef(null);
 let updateByIds = [];
@@ -123,9 +123,7 @@ return (
   <div className = "attributesContent" >
    { prepareAttributes() } 
   <button className = "Plus" disabled = {disabled}
-          onClick={e=>handler(current, "add")} >
-          {pointerPlus()}
-          </button>
+          onClick={e=>handler(current, "add")}>Add</button>
   </div>
 </div>
 </div>

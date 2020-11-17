@@ -1,9 +1,15 @@
 .treeView{
-  /* background: #1f2430; */
-  background: #34538a;
-  height: 640px;
-  width: 284px;
+  /* background: #8cc63e; */
+  /* background: #34538a; */
+  /* background: #080000; */
+  /* background: #5d5d5a; */
+  /* border-radius: 10px 0 0 10px; */
+  height: 720px;
+  width: 316px;
   display: grid;
-  /* justify-items: end; */
+  overflow: auto;
 
+  /* justify-items: end; */
+  /* align-items: center; */
 }
+

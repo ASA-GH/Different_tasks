@@ -5,6 +5,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* overflow: hidden; */
+  background: url("../src/img/PieceOfWoodBackground5.png");
+  /* background: url("../src/img/PieceOfWoodBackground1.jpg"); */
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 code {
