@@ -15,28 +15,11 @@ const [disabled, setDisabled] = useState(true);
 
 let stringName ="Node name"
 let stringAttribute = "- Attributes -"
-let value = "";
-  const inputEl = useRef(null);
-let updateByIds = [];
-
-const registration = (updateById) => {
-    updateByIds.push(updateById);
-  }
  
   const update = () => {
     setUpdateAttribute(!updateAttribute);
   }
 
-  const updateById = (id) => {
-
-    if (props.node.id == id) {
-      setUpdateAttribute(!updateAttribute);
-      return;
-    }
-    for (let i in updateByIds) {
-      updateByIds[i](id);
-    }
-  }
   const createNameAttribute = (node)=>{
     let i = 1;
     while (true) {
@@ -49,7 +32,6 @@ const registration = (updateById) => {
 
   const deleteAttribute = (nodeId, attributeKey) =>{
     props.deleteAttribute(nodeId, attributeKey)
-    update();
   };
 
   const addAttributes = (node) =>{
@@ -66,11 +48,6 @@ const select = (node) =>{
   setDisabled(false)
 }
 
-const pointerPlus = () =>{
- let chevron = !plus ? <img src ={imgPlusBlue} alt="+"/> : <img src ={imgPlusGreen} alt="-"/>
-  return chevron
-}
-
 const handler = (node, action) => {
   if ("add" == action){
     addAttributes(node);
@@ -83,25 +60,27 @@ const syntheticFunction = e => {
 
 
 const prepareAttributes = () => {
-  registration(updateById);
-  let attributes = [];
+  let a = [];
   if (!current.attributes)
-    return attributes;
+    return a;
 
   let keys = Object.keys(current.attributes)
   
   for (let i in keys){
-    let name = keys[i]
-    attributes.push(<Attribute node={current} name={name} value={current.attributes[name]}  
+    let n = keys[i]
+
+// console.log(name)
+
+    a.push(<Attribute key={i} node={current} n={n} value={current.attributes[n]}  
                                deleteAttribute={deleteAttribute} 
                                changeAttributeKey={props.changeAttributeKey} 
-                               changeAttributeValue={props.changeAttributeValue}/>)
+                               changeAttributeValue={props.changeAttributeValue} 
+                               parentUpdate={update}/>)
   }
-
-  return attributes;
+  return a;
 }
 props.registration("onSelect", select);
-registration("add", addAttributes);
+props.registration("add", addAttributes);
 
 return (
 <div className="nodeEditView">
