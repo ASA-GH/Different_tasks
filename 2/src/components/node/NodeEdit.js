@@ -36,7 +36,6 @@ const NodeEdit = (props) => {
     setInput(node.name);
     setDisabled(false);
   };
-
   const handler = (node, action) => {
     if ("add" == action) {
       addAttributes(node);

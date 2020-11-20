@@ -1,7 +1,7 @@
 export default class Node {
   id = "";
   name = "";
-  rootId = ""
+  rootId = "";
   children = [];
   attributes = {};
 
@@ -11,8 +11,8 @@ export default class Node {
     this.rootId = rootId ? rootId : this.id;
   }
 
-  isRoot(){
-    return this.rootId == this.id
+  isRoot() {
+    return this.rootId == this.id;
   }
 
   createId() {

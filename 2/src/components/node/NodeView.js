@@ -4,7 +4,6 @@ import Dropdown from "./../dropdown/Dropdown";
 import imgChevronDown from "./../../img/chevronDown.svg";
 import imgChevronRight from "./../../img/chevronRight.svg";
 
-
 export default function NodeView(props) {
   const [expanded, setExpanded] = useState(false);
   const [dropdown, setDropdown] = useState(undefined);
