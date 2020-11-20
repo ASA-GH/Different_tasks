@@ -1,5 +1,4 @@
-.Attribute{
-  /* background-color: #84cb53; */
+.Attribute {
   width: 100%;
   height: 40px;
   display: grid;
@@ -8,73 +7,52 @@
   display: grid;
   justify-items: center;
   align-items: center;
-
 }
-/* .Attribute input{
- width: 100%;
- height: 100%;
- border: none;
-} */
-.wrapInput{
+.wrapInput {
   display: grid;
 }
-.Attribute input{
- width: 100%;
- height: 100%;
-  /* margin-bottom: 20px; */
- font-size: 20px;
- border: none;
- cursor: pointer;
- /* border-style: none none solid none;
- border-color: #000;
- border-width: 1px; */
- outline: none;
- /* transform:translateY(30px); */
- background: transparent;
+.Attribute input {
+  width: 100%;
+  height: 100%;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  background: transparent;
 }
-.Attribute input::placeholder{
+.Attribute input::placeholder {
   font-size: 14px;
 }
-
-
-.inputName{
- color: #3c4041;
+.inputName {
+  color: #3c4041;
 }
-.inputValue{
- color: #34538a;
+.inputValue {
+  color: #34538a;
 }
-
-.Attribute input:focus{
+.Attribute input:focus {
   border-style: none none solid none;
   border-color: #fff;
-  /* border-color: #f46f60;
- */
   border-width: 3px;
-  /* background: red; */
-} 
-.wrapInput label{
+}
+.wrapInput label {
   color: #000;
   height: 29px;
   font-size: 16px;
-  transform:translateY(-4px);
+  transform: translateY(-4px);
 }
-.wrapInput input:focus+label{
+.wrapInput input:focus + label {
   font-size: 14px;
-  transform:translateY(-21px);
+  transform: translateY(-21px);
 }
-.wrapInput input:disabled{
+.wrapInput input:disabled {
   color: #000;
   background-color: transparent;
-  
 }
-.wrapInput input:not(:invalid):required+label {
+.wrapInput input:not(:invalid):required + label {
   font-size: 14px;
-  transform:translateY(-21px);
+  transform: translateY(-21px);
 }
-
-
-
-.Close{
+.Close {
   background: transparent;
   height: max-content;
   width: max-content;
@@ -83,9 +61,8 @@
   border: none;
   cursor: pointer;
   outline: none;
-
 }
-.searchBar{
+.searchBar {
   background: #cbccc6;
   position: sticky;
   top: 0;
@@ -95,9 +72,7 @@
   display: grid;
   justify-items: center;
 }
-
-.searchBar form{
-  /* background: palegreen; */
+.searchBar form {
   background: transparent;
   max-width: 1000px;
   width: 100%;
@@ -105,54 +80,46 @@
   display: grid;
   justify-content: space-between;
   grid-template-columns: repeat(3, max-content);
-/* align-items: end; */
-/* align-content: end; */
-   /*  padding-bottom: 21px; */
-
 }
-.wrapInput{
+.wrapInput {
   display: grid;
 }
-.wrapInput input{
- padding: 0;
- /* margin-bottom: 20px; */
- height: 28px;
- width: 350px;
- font-size: 16px;
- border-style: none none solid none;
- border-color: #000;
- border-width: 1px;
- outline: none;
- transform:translateY(30px);
- background: transparent;
+.wrapInput input {
+  padding: 0;
+  height: 28px;
+  width: 350px;
+  font-size: 16px;
+  border-style: none none solid none;
+  border-color: #000;
+  border-width: 1px;
+  outline: none;
+  transform: translateY(30px);
+  background: transparent;
 }
-.wrapInput input:focus{
+.wrapInput input:focus {
   border-style: none none solid none;
   border-color: #0b8457;
   border-width: 3px;
-  /* background: red; */
-} 
-.wrapInput label{
+}
+.wrapInput label {
   color: #000;
   height: 29px;
   font-size: 16px;
-  transform:translateY(-4px);
+  transform: translateY(-4px);
 }
-.wrapInput input:focus+label{
+.wrapInput input:focus + label {
   font-size: 14px;
-  transform:translateY(-21px);
+  transform: translateY(-21px);
 }
-.wrapInput input:disabled{
+.wrapInput input:disabled {
   color: #000;
   background-color: transparent;
-  
 }
-.wrapInput input:not(:invalid):required+label {
+.wrapInput input:not(:invalid):required + label {
   font-size: 14px;
-  transform:translateY(-21px);
+  transform: translateY(-21px);
 }
-
-.searchBar form button{
+.searchBar form button {
   background: #232834;
   color: #cbccc6;
   padding: 0;
@@ -165,12 +132,10 @@
   cursor: pointer;
   font-size: 16px;
 }
-.searchBar form button:disabled{
- background: #232834;
- color: #cbccc6;
-
+.searchBar form button:disabled {
+  background: #232834;
+  color: #cbccc6;
 }
-.searchBar form button:active{
+.searchBar form button:active {
   background: #0b8457;
- 
- }
+}

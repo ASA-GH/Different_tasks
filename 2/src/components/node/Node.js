@@ -1,43 +1,50 @@
-
-export default class Node{
-
+export default class Node {
   id = "";
   name = "";
+  rootId = ""
   children = [];
   attributes = {};
 
-  constructor(name){
+  constructor(name, rootId) {
     this.name = name;
     this.id = this.createId();
+    this.rootId = rootId ? rootId : this.id;
   }
-  createId(){
-    return Math.random().toString(36).substring(2) + (new Date()).getTime().toString(36);
+
+  isRoot(){
+    return this.rootId == this.id
   }
-  add(node){ this.children.push (node)}
+
+  createId() {
+    return (
+      Math.random().toString(36).substring(2) +
+      new Date().getTime().toString(36)
+    );
+  }
+  add(node) {
+    this.children.push(node);
+  }
 
   createChild(parentId) {
     if (this.id == parentId) {
-      this.add(new Node("new node"));
+      this.add(new Node("new node", this.rootId));
     } else {
       this.children.map((node) => {
         node.createChild(parentId);
-      })
+      });
     }
   }
-  
-  renameChild(id, name){
+  renameChild(id, name) {
     for (let i in this.children) {
       if (this.children[i].id == id) {
         this.children[i].name = name;
         return this.children[i];
       }
-       let res = this.children[i].renameChild(id, name);
-       if (res)
-         return res;
+      let res = this.children[i].renameChild(id, name);
+      if (res) return res;
     }
     return null;
   }
-
   deleteChild(id) {
     for (let i in this.children) {
       if (this.children[i].id == id) {
@@ -47,28 +54,26 @@ export default class Node{
       this.children[i].deleteChild(id);
     }
   }
-  
-  createAttribute(nodeId, attributeKey){
-    if (this.id == nodeId){
+  createAttribute(nodeId, attributeKey) {
+    if (this.id == nodeId) {
       this.attributes[attributeKey] = "new value";
       return;
     }
     this.children.map((node) => {
       node.createAttribute(nodeId, attributeKey);
-    })
+    });
   }
-  deleteAttribute(nodeId, attributeKey){
-    if (this.id == nodeId){
+  deleteAttribute(nodeId, attributeKey) {
+    if (this.id == nodeId) {
       delete this.attributes[attributeKey];
       return;
     }
     this.children.map((node) => {
       node.deleteAttribute(nodeId, attributeKey);
-    })
+    });
   }
-
-  changeAttributeKey = (nodeId, oldAttributeKey, newAttributeKey) =>{
-    if (this.id == nodeId){
+  changeAttributeKey = (nodeId, oldAttributeKey, newAttributeKey) => {
+    if (this.id == nodeId) {
       let v = this.attributes[oldAttributeKey];
       delete this.attributes[oldAttributeKey];
       this.attributes[newAttributeKey] = v;
@@ -76,17 +81,15 @@ export default class Node{
     }
     this.children.map((node) => {
       node.changeAttributeKey(nodeId, oldAttributeKey, newAttributeKey);
-    })
-  }
-
-  changeAttributeValue = (nodeId, attributeKey, attributeValue) =>{
-    if (this.id == nodeId){
+    });
+  };
+  changeAttributeValue = (nodeId, attributeKey, attributeValue) => {
+    if (this.id == nodeId) {
       this.attributes[attributeKey] = attributeValue;
       return;
     }
     this.children.map((node) => {
       node.changeAttributeValue(nodeId, attributeKey, attributeValue);
-    })
-  }
-
+    });
+  };
 }
