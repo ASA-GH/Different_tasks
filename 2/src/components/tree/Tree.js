@@ -4,18 +4,23 @@ export default class Tree {
   root = {};
   constructor() {
     this.root = new Node(" . . ", "");
+    this.generateRandomDate(this.root);
+  }
+
+  generateRandomDate(root) {
     for (let i = 0; i < 5; i++) {
       let name = "test-" + i;
-      let node = new Node(name, this.root.id);
+      let node = new Node(name, root.id);
       node.attributes["a" + i] = "c" + i;
       node.attributes["b" + i] = "e" + i;
 
       for (let j = 0; j < 5; j++) {
-        node.add(new Node(name + "-" + j, this.root.id));
+        node.add(new Node(name + "-" + j, root.id));
       }
-      this.root.add(node);
+      root.add(node);
     }
   }
+
   createNode(parentId) {
     this.root.createChild(parentId);
   }

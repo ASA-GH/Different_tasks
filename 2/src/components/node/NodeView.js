@@ -41,7 +41,31 @@ export default function NodeView(props) {
 
   const handler = (id, action) => {
     if ("add" == action) add(id);
+    else if ("export" == action) exportNode(id);
     else remove(id);
+  };
+
+  const exportNode = (id) => {
+    let data = new Date().toLocaleDateString();
+    console.log(data);
+    let file = "export_" + data + ".json";
+    download(file, props.node.export());
+  };
+
+  const download = (filename, text) => {
+    let a = document.createElement("a");
+    a.setAttribute(
+      "href",
+      "data:text/plain;charset=utf-8," + encodeURIComponent(text)
+    );
+    a.setAttribute("download", filename);
+
+    a.style.display = "none";
+    document.body.appendChild(a);
+
+    a.click();
+
+    document.body.removeChild(a);
   };
 
   const prepare = () => {

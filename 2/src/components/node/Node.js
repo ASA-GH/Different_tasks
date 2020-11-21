@@ -9,6 +9,8 @@ export default class Node {
     this.name = name;
     this.id = this.createId();
     this.rootId = rootId ? rootId : this.id;
+    this.children = [];
+    this.attributes = {};
   }
 
   isRoot() {
@@ -91,5 +93,21 @@ export default class Node {
     this.children.map((node) => {
       node.changeAttributeValue(nodeId, attributeKey, attributeValue);
     });
+  };
+
+  export_ = () => {
+    let obj = {};
+    obj["name"] = this.name;
+    obj["attributes"] = this.attributes;
+    let arr = [];
+    this.children.map((node) => {
+      arr.push(node.export_());
+    });
+    obj["children"] = arr;
+    return obj;
+  };
+
+  export = () => {
+    return JSON.stringify(this.export_());
   };
 }

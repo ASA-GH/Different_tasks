@@ -45,7 +45,7 @@ const Dropdown = (props) => {
           >
             Add
           </li>
-          <li className="dropdownMenuItem">Export</li>
+          <li className="dropdownMenuItem"onClick={(e) => handler(props.id, props.handler, "export")}>Export</li>
           {props.isRoot ? null : (
             <li
               className="dropdownMenuItem"
