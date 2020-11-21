@@ -3,7 +3,7 @@ import Node from "./../node/Node";
 export default class Tree {
   root = {};
   constructor() {
-    this.root = new Node(" . . ", "");
+    this.root = new Node(" root ", "");
     this.generateRandomDate(this.root);
   }
 
