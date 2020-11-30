@@ -41,20 +41,14 @@ const getSentences1 = (text) => {
     return text2;
 };
 
-let s = include("./js/text.js")
-    // let s = include("./js/text1.txt")
-    // const txt = document.read('<script type="text/javascript" src="./js/text1.txt"></script>')
-s.onload = function() {
-    // Библиотека загружена, но ещё не инициализирована, её код пока не выполнен,
-    // поэтому планируем запуск нашего кода в следующем тике.
-    setTimeout(function() {
-        // console.log(past(getStrings1(text)[0], getSentences1(text)))
-        queue(text, past, 10);
-    }, 0);
-};
-//  console.log(s)
-//  console.log(txt)
-
+const start = () => {
+    let s = include("./js/text.js")
+    s.onload = function() {
+        setTimeout(function() {
+            queue(text, past, 10);
+        }, 0);
+    };
+}
 
 const getText = function(text, pattern) {
     return text.match(pattern);
@@ -82,9 +76,6 @@ function buttonStartHandler() {
 
 const queue = (text, f, limit) => {
     const getPromise = (str, sentences) => {
-        // console.log(sentences)
-        // console.log(str)
-
         const promise = () =>
             new Promise((resolve) => {
                 setTimeout(() => {
@@ -125,8 +116,6 @@ const queue = (text, f, limit) => {
 
     let sentences = getSentences(text);
     let arrStr = getStrings(text);
-    // console.log( arrStr)
-    // console.log(str)
 
     this.promises = [];
     for (let i in arrStr) {
