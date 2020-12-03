@@ -1,5 +1,6 @@
 let inputLimit = document.getElementById("inputLimit");
 let inputLength = document.getElementById("inputLength");
+let parent = document.getElementById("wrapproduct");
 
 const getText = (text, pattern) => {
   return text.match(pattern);
@@ -28,9 +29,9 @@ const buttonStartHandler = () => {
 };
 
 const enabledHandler = () => {
-    buttonStart.disabled = false;
-    inputLength.disabled = false;
-    inputLimit.disabled = false;
+  buttonStart.disabled = false;
+  inputLength.disabled = false;
+  inputLimit.disabled = false;
 };
 
 inputLength.addEventListener("input", inputLengthHandler);
@@ -61,8 +62,7 @@ const getSentences = (text) => {
   return text2;
 };
 
-const past = (str, sentences) => {
-  let parent = document.getElementById("wrapproduct");
+const past = (str, sentences, parent) => {
   let div = document.createElement("div");
   div.className = "product";
 
@@ -73,18 +73,18 @@ const past = (str, sentences) => {
 
   div.innerHTML = `<h4>${parent.childElementCount + 1}. ${title}</h4><p>${sentence}</p>`;
   parent.append(div);
- 
+
   let progress = document.getElementById("progress");
-  progress.innerHTML = `Progress: ${
-    Math.round((parseFloat(parent.childElementCount) / parseFloat(inputLength.value)) * 100.0)
-  } of 100`;
+  progress.innerHTML = `Progress: ${Math.round(
+    (parseFloat(parent.childElementCount) / parseFloat(inputLength.value)) *
+      100.0
+  )} of 100`;
 
   return "success";
 };
 
 const finised = (running) => {
-  if (!running)
-    enabledHandler();
+  if (!running) enabledHandler();
 };
 
 const include = (url) => {
@@ -93,8 +93,13 @@ const include = (url) => {
   document.getElementsByTagName("body")[0].appendChild(script);
   return script;
 };
-  
+const clear = (parent) => {
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
+};
 const start = () => {
+  clear(parent);
   let s = include("./js/text.js");
   s.onload = function () {
     setTimeout(function () {
@@ -110,13 +115,12 @@ const queue = (objects, f, limit) => {
     const promise = () =>
       new Promise((resolve) => {
         setTimeout(() => {
-          resolve(f(str, sentences));
+          resolve(f(str, sentences, parent));
         }, Math.round(Math.random() * 9000) + 1000);
       });
 
     return promise();
   };
-
   const _next = () => {
     return running.length < limit && promises.length;
   };
@@ -130,7 +134,7 @@ const queue = (objects, f, limit) => {
         complete.push(a);
         running.shift();
         run();
-        finised(_next())
+        finised(_next());
       });
       running.push(promise);
     }
@@ -143,7 +147,6 @@ const queue = (objects, f, limit) => {
   for (let i in randomStrs) {
     this.promises.push(getPromise(randomStrs[i], sentences));
   }
-
   //this.promises = {..._promises};
   this.total = promises.length;
   this.running = [];
