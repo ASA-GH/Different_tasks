@@ -76,15 +76,11 @@ const past = (str, sentences, parent) => {
 
   let progress = document.getElementById("progress");
   progress.innerHTML = `Progress: ${Math.round(
-    (parseFloat(parent.childElementCount) / parseFloat(inputLength.value)) *
-      100.0
+    (parseFloat(parent.childElementCount) / parseFloat(inputLength.value)) 
+    * 100.0
   )} of 100`;
 
   return "success";
-};
-
-const finised = (running) => {
-  if (!running) enabledHandler();
 };
 
 const include = (url) => {
@@ -93,29 +89,35 @@ const include = (url) => {
   document.getElementsByTagName("body")[0].appendChild(script);
   return script;
 };
+
 const clear = (parent) => {
   while (parent.firstChild) {
     parent.removeChild(parent.firstChild);
   }
 };
+
+const _start = (_text) => {
+  let randomStrs = getStrings(_text, inputLength.value);
+  let sentences = getSentences(_text);
+  queue([randomStrs, sentences, enabledHandler], past, inputLimit.value);
+};
+
 const start = () => {
   clear(parent);
   let s = include("./js/text.js");
   s.onload = function () {
     setTimeout(function () {
-      let randomStrs = getStrings(text, inputLength.value);
-      let sentences = getSentences(text);
-      queue([randomStrs, sentences, finised], past, inputLimit.value);
+      _start(text);
     }, 0);
   };
 };
-
 const queue = (objects, f, limit) => {
   const getPromise = (str, sentences) => {
     const promise = () =>
       new Promise((resolve) => {
         setTimeout(() => {
-          resolve(f(str, sentences, parent));
+          let r = f(str, sentences, parent);
+          resolve(r);
         }, Math.round(Math.random() * 9000) + 1000);
       });
 
@@ -134,7 +136,7 @@ const queue = (objects, f, limit) => {
         complete.push(a);
         running.shift();
         run();
-        finised(_next());
+        if (!promises.length && !running.length) finised();
       });
       running.push(promise);
     }
@@ -147,8 +149,7 @@ const queue = (objects, f, limit) => {
   for (let i in randomStrs) {
     this.promises.push(getPromise(randomStrs[i], sentences));
   }
-  //this.promises = {..._promises};
-  this.total = promises.length;
+
   this.running = [];
   this.complete = [];
   this.limit = limit;
