@@ -6,6 +6,7 @@ export default class Transport {
   constructor(name) {
     this.name = name;
     this.id = uuid();
+    // console.log(this.id)
     this.speed = 0;
     this.repairTime = 3;
     this.passedTime = 0;
@@ -14,6 +15,13 @@ export default class Transport {
     this.probability = 0;
     this.type = "";
     this.isStop = false;
+    this.time = 0;
+  }
+
+  Prepare() {
+    this.time = 0;
+    this.isStop = false;
+    this.distance = 0;
   }
 
   IsCrash() {
@@ -34,11 +42,13 @@ export default class Transport {
   }
 
   Run() {
-    if (!this.isStop && !this.CheckCrash())
+    if (!this.isStop && !this.CheckCrash()) {
       this.distance = this.distance + this.speed;
+    }
   }
 
-  Stop(time, distance) {
+  Stop(time) {
+    this.time = time;
     this.isStop = true;
   }
 }

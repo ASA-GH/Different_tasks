@@ -4,7 +4,7 @@ export default class Truck extends Transport {
   constructor(name, context) {
     super(name);
     this.name = name;
-    this.cargoWeight = context["cargoWeight"];
+    this.cargoWeight = context.cargoWeight;
     this.repairTime = 6;
     this.speed = 75;
     this.probability = 0.06;

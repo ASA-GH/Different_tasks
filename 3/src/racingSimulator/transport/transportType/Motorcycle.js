@@ -4,7 +4,7 @@ export default class Motorcycle extends Transport {
   constructor(name, context) {
     super(name);
     this.name = name;
-    this.stroller = context["stroller"];
+    this.stroller = context.stroller;
     this.repairTime = 3;
     this.speed = 90;
     this.probability = 0.05;

@@ -1,0 +1,11 @@
+$theme-colors: (
+    "info": tomato,
+    "danger": teal
+);
+@import "~bootstrap/scss/bootstrap";
+.listMembers{
+  background-color:#FFEBCD;
+  width: 100%;
+  height: 100%;
+
+}
