@@ -14,13 +14,13 @@ const RunRace = (members, context, resolve) => {
   let allFinished = true;
   for (const index in members) {
     let member = members[index];
-    member.Run();
+    member.Run(context.time);
 
     if (!member.isStop && context.distance <= member.distance) {
       if (context.distance < member.distance)
         member.distance = context.distance;
 
-      member.Stop(context.time);
+      member.Stop();
     }
     if (!member.isStop) {
       allFinished = false;

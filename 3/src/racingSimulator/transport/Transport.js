@@ -41,14 +41,15 @@ export default class Transport {
     return true;
   }
 
-  Run() {
-    if (!this.isStop && !this.CheckCrash()) {
+  Run(time) {
+    if (this.isStop) return;
+    this.time = time;
+    if (!this.CheckCrash()) {
       this.distance = this.distance + this.speed;
     }
   }
 
-  Stop(time) {
-    this.time = time;
+  Stop() {
     this.isStop = true;
   }
 }
