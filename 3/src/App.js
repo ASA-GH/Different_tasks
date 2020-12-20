@@ -39,6 +39,11 @@ function App() {
     setRace(true);
     Start([...members], Finished, { distance: 300, time: 0, update: Update });
   };
+  const DeleteMember = (member) =>{
+    let _members = [...members]
+    _members.splice(_members.indexOf(member), 1);
+    setMembers(_members)
+  }
   const initMembers = (members, config) => {
     if (members === 0) {
       let arr = [];
@@ -47,7 +52,7 @@ function App() {
       });
       setMembers(arr);
       return true;
-    } else return ListMembers(members);
+    } else return ListMembers(members, DeleteMember);
   };
   return useMemo(() => {
     return (

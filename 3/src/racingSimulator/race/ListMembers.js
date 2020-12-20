@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Toast, Badge } from "react-bootstrap";
 
-const ListMembers = (members) => {
+const ListMembers = (members, onClose) => {
    const Parameter = (member) => {
     switch (member.type) {
       case "Motorcycle":
@@ -15,7 +15,7 @@ const ListMembers = (members) => {
     }
      }
   return members.map((member, i) => (
-    <Toast>
+    <Toast onClose={()=>{onClose(member)}} >
       <Toast.Header className="pl-3 ">
         <Badge className="mr-3 " variant="primary">
           {i + 1}
