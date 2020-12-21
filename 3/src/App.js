@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button, Row, Col, Container } from "react-bootstrap";
+import { Button, Row, Col, Container, Moda } from "react-bootstrap";
 import "./App.scss";
 import config from "./config.json";
 import CreateTransport from "./racingSimulator/transport/CreateTransport";
@@ -8,8 +8,10 @@ import ListMembers from "./racingSimulator/race/ListMembers";
 import Start from "./racingSimulator/race/Race";
 import Navigation from "./racingSimulator/race/navigation/Navigation";
 import ControlPanel from "./racingSimulator/race/ControlPanel";
+import Result from "./racingSimulator/result/Result";
 
 function App() {
+  const [show, setShow] = useState(false);
   const [members, setMembers] = useState(0);
   const [race, setRace] = useState(false);
   const [time, setTime] = useState(0);
@@ -18,9 +20,15 @@ function App() {
   const Finished = (_members, context) => {
     console.log("Finished");
     setRace(false);
-
+    setShow(true);
     setMembers(_members);
     return members;
+  };
+
+  const HandleClose = () => {
+    setShow(false);
+    setDistance(0);
+    setTime(0);
   };
 
   const Update = (_members, _time) => {
@@ -30,6 +38,7 @@ function App() {
   };
 
   const HandlerStart = (_distance) => {
+    HandleClose();
     setRace(true);
     setDistance(_distance);
     Start([...members], Finished, {
@@ -82,24 +91,36 @@ function App() {
 
   return useMemo(() => {
     return (
-      <Container style={{ backgroundColor: "#d63384", minHeight: "100vh" }}>
+      <Container style={{ minHeight: "100vh" }}>
         <Row>
-          <Col style={{ backgroundColor: "red", height: "100%" }}>
-            {init(members, config)}
+          <Col style={{ height: "100%" }}>
+            <Row>
+              <Col>
+                <br />
+                <h1 className="md-center">Member</h1>
+                <br />
+              </Col>
+            </Row>
+            <Row>
+              <Col>{init(members, config)}</Col>
+            </Row>
           </Col>
-          <Col style={{ backgroundColor: "blue" }}>
+          <Col>
             <ControlPanel
               race={race}
               HandlerStart={HandlerStart}
               distance={distance}
+              members={members}
+              show={show}
+              HandleClose={HandleClose}
             />
           </Col>
-          <Col style={{ backgroundColor: "yellow" }}>
+          <Col>
             <Navigation members={members} AddMember={AddMember} race={race} />
           </Col>
         </Row>
       </Container>
     );
-  }, [members, race, time]);
+  }, [members, race, time, show, HandleClose]);
 }
 export default App;

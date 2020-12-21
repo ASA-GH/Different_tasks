@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
+import Result from "../result/Result";
 
 const ControlPanel = (props) => {
-  const { race, HandlerStart, distance } = props;
+  const { members, race, HandlerStart, distance, show, HandleClose } = props;
 
   const [value, setValue] = useState(distance);
   const onInput = ({ target: { value } }) => setValue(value);
@@ -29,6 +30,13 @@ const ControlPanel = (props) => {
       <Button variant="success" disabled={race} type="submit">
         Start
       </Button>
+      <Result
+        members={members}
+        show={show}
+        HandleClose={HandleClose}
+        HandlerStart={HandlerStart}
+        value={value}
+      />
     </Form>
   );
 };

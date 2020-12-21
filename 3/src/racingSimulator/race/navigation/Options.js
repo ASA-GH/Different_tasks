@@ -1,5 +1,4 @@
 import React from "react";
-import { Button, Form } from "react-bootstrap";
 
 const Options = (props) => {
   const { option } = props;
