@@ -3,7 +3,7 @@ const StopTimer = (timer) => {
 };
 
 const CompareMembers = (member1, member2) => {
-  if (member1.distance == member2.distance) return member1.time - member2.time;
+  if (member1.distance === member2.distance) return member1.time - member2.time;
   return member2.distance - member1.distance;
 };
 

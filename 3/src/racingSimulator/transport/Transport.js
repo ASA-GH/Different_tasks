@@ -6,7 +6,6 @@ export default class Transport {
   constructor(name) {
     this.name = name;
     this.id = uuid();
-    // console.log(this.id)
     this.speed = 0;
     this.repairTime = 3;
     this.passedTime = 0;

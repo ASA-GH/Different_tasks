@@ -1,21 +1,12 @@
 import React, { useState, useMemo } from "react";
-// import Race from "./racingSimulator/race/Race";
-// import Navigation from "./racingSimulator/race/Navigation";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {
-  Button,
-  Row,
-  Col,
-  Container,
-  Toast,
-  Form,
-  Badge,
-} from "react-bootstrap";
+import { Button, Row, Col, Container } from "react-bootstrap";
 import "./App.scss";
 import config from "./config.json";
 import CreateTransport from "./racingSimulator/transport/CreateTransport";
 import ListMembers from "./racingSimulator/race/ListMembers";
 import Start from "./racingSimulator/race/Race";
+import Navigation from "./racingSimulator/race/navigation/Navigation";
 
 function App() {
   const [members, setMembers] = useState(0);
@@ -29,21 +20,20 @@ function App() {
     setMembers(_members);
     return members;
   };
- const Update = (_members, _time) =>{
-  console.log("Update");
-  setMembers(_members);
-  setTime(_time);
-  return members;
- }
+  const Update = (_members, _time) => {
+    setMembers(_members);
+    setTime(_time);
+    return members;
+  };
   const HandlerStart = () => {
     setRace(true);
     Start([...members], Finished, { distance: 300, time: 0, update: Update });
   };
-  const DeleteMember = (member) =>{
-    let _members = [...members]
+  const DeleteMember = (member) => {
+    let _members = [...members];
     _members.splice(_members.indexOf(member), 1);
-    setMembers(_members)
-  }
+    setMembers(_members);
+  };
   const initMembers = (members, config) => {
     if (members === 0) {
       let arr = [];
@@ -53,6 +43,16 @@ function App() {
       setMembers(arr);
       return true;
     } else return ListMembers(members, DeleteMember);
+  };
+  const AddMember = (members, data) => {
+    let _members = [...members];
+
+    let context = {};
+    Object.keys(data).map((key) => {
+      if (key !== "name" && key !== "type") context[key] = data[key];
+    });
+    _members.push(CreateTransport(data.name, data.type, context));
+    setMembers(_members);
   };
   return useMemo(() => {
     return (
@@ -67,28 +67,7 @@ function App() {
             </Button>
           </Col>
           <Col style={{ backgroundColor: "yellow" }}>
-            <Form>
-              <br />
-              <Form.Control type="text" placeholder="Name" />
-              <br />
-              <Form.Control as="select">
-                <option>Default select</option>
-              </Form.Control>
-              <br />
-              <Form.Check
-                type="switch"
-                id="custom-switch"
-                label="Check this switch"
-              />
-              <br />
-              <Form.Control type="text" placeholder="people" />
-              <br />
-              <Form.Control type="text" placeholder="cargo" />
-              <br />
-              <Button variant="primary" type="submit">
-                Submit
-              </Button>
-            </Form>
+            <Navigation members={members} AddMember={AddMember} />
           </Col>
         </Row>
       </Container>
@@ -96,32 +75,3 @@ function App() {
   }, [members, race, time]);
 }
 export default App;
-
-// function App() {
-//   return (
-//     <div className="wrapperApp">
-//       <div className="innerApp">
-//         <Navigation/>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default App;
-
-// {members.map((variant, idx) => (
-//       <Toast>
-//         <Toast.Header>
-//           <img
-//             src="holder.js/20x20?text=%20"
-//             className="rounded mr-2"
-//             alt=""
-//           />
-//           <strong className="mr-auto">{variant}</strong>
-//           <small>11 mins ago</small>
-//         </Toast.Header>
-//         <Toast.Body>
-//           Hello, world! This is a toast message.
-//         </Toast.Body>
-//       </Toast>
-//     ))}
