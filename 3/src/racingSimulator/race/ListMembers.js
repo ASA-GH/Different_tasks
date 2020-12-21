@@ -1,8 +1,15 @@
 import React from "react";
-import { Container, Row, Col, Toast, Badge } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Toast,
+  Badge,
+  ProgressBar,
+} from "react-bootstrap";
 
-const ListMembers = (members, onClose) => {
-   const Parameter = (member) => {
+const ListMembers = (members, distance, onClose) => {
+  const Parameter = (member) => {
     switch (member.type) {
       case "Motorcycle":
         return `Stroller : ${member.stroller === false ? "No" : "Yes"}`;
@@ -11,13 +18,17 @@ const ListMembers = (members, onClose) => {
       case "Truck":
         return `Cargo : ${member.cargoWeight}`;
       default:
-        return "Error"
+        return "Error";
     }
-     }
+  };
   return members.map((member, i) => (
-    <Toast onClose={()=>{onClose(member)}} >
-      <Toast.Header className="pl-3 ">
-        <Badge className="mr-3 " variant="primary">
+    <Toast
+      onClose={() => {
+        onClose(member);
+      }}
+    >
+      <Toast.Header className={`pl-3 ${member.GetColor()}`}>
+        <Badge className="mr-3 " variant="light">
           {i + 1}
         </Badge>
         <strong className="mr-auto"> {member.name} </strong>
@@ -25,18 +36,28 @@ const ListMembers = (members, onClose) => {
       <Toast.Body>
         {" "}
         <Container>
-          <Row >
+          <Row>
+            <Col>
+              <ProgressBar
+                min={0}
+                max={distance}
+                variant={member.GetVariant()}
+                now={member.distance}
+              />
+            </Col>
+          </Row>
+          <Row>
             <Col>{`Distance : ${member.distance}`}</Col>
             <Col>{`Time : ${member.time}`}</Col>
           </Row>
-          <Row >
+          <Row>
             <Col>{`Speed : ${member.speed}`}</Col>
             <Col>{Parameter(member)}</Col>
           </Row>
-          <Row className="md" >
-            {`Puncture probability : ${member.probability}`}
+          <Row>
+            <Col>{`Type : ${member.type}`}</Col>
+            <Col>{`Chance : ${member.probability}`}</Col>
           </Row>
-
         </Container>
       </Toast.Body>
     </Toast>

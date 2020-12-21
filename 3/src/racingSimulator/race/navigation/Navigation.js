@@ -4,7 +4,7 @@ import AdditionalParameter from "./AdditionalParameter";
 import Options from "./Options";
 
 const Navigation = (props) => {
-  const { members, AddMember } = props;
+  const { members, race, AddMember } = props;
   const [value, setValue] = useState("Motorcycle");
   let option = ["Motorcycle", "Car", "Truck"];
 
@@ -22,15 +22,20 @@ const Navigation = (props) => {
       <br />
       <h1 className="md-center">Add member</h1>
       <br />
-      <Form.Control type="text" name="name" placeholder="Name" />
+      <Form.Control
+        type="text"
+        name="name"
+        placeholder="Name"
+        disabled={race}
+      />
       <br />
-      <Form.Control as="select" name="type" onChange={GetValue}>
+      <Form.Control as="select" name="type" onChange={GetValue} disabled={race}>
         <Options option={option} />
       </Form.Control>
       <br />
-      <AdditionalParameter value={value} />
+      <AdditionalParameter value={value} race={race} />
       <br />
-      <Button variant="success" type="submit">
+      <Button variant="success" type="submit" disabled={race}>
         Add member
       </Button>
     </Form>

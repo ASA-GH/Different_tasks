@@ -13,10 +13,24 @@ export default class Transport {
     this.wheelsCount = 0;
     this.probability = 0;
     this.type = "";
-    this.isStop = false;
+    this.isStop = true;
     this.time = 0;
   }
+  GetVariant() {
+    if (this.isStop) return "success";
 
+    if (this.IsCrash()) return "danger";
+
+    return "info";
+  }
+
+  GetColor() {
+    if (this.isStop) return "bg-success text-white";
+
+    if (this.IsCrash()) return "bg-danger text-white";
+
+    return "bg-info text-dark";
+  }
   Prepare() {
     this.time = 0;
     this.isStop = false;

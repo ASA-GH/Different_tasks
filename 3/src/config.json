@@ -1,19 +1,20 @@
 {
-  "members":[
+  "members": [
     {
-    "name": "test1",
-    "type": "Motorcycle",
-    "context": {"stroller": false}
+      "name": "test1",
+      "type": "Motorcycle",
+      "context": { "stroller": false }
     },
     {
-    "name": "test3",
-    "type": "Car",
-    "context": {"peopleCount": 2}
+      "name": "test3",
+      "type": "Car",
+      "context": { "peopleCount": 2 }
     },
     {
-    "name": "test4",
-    "type": "Truck",
-    "context": {"cargoWeight": 100}
+      "name": "test4",
+      "type": "Truck",
+      "context": { "cargoWeight": 100 }
     }
-  ]
+  ],
+  "distance": "500"
 }
