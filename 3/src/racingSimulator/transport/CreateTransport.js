@@ -1,21 +1,21 @@
 import Truck from "./transportType/Truck";
 import Car from "./transportType/Car";
-import Motorcycle from "./transportType/Motorcycle";
+import Bike from "./transportType/Bike";
 
 const CreateTransport = (
   name = "New transport",
-  type = "Motorcycle",
+  type = "Bike",
   context = {}
 ) => {
   switch (type) {
-    case "Motorcycle":
-      return new Motorcycle(name, context);
+    case "Bike":
+      return new Bike(name, context);
     case "Car":
       return new Car(name, context);
     case "Truck":
       return new Truck(name, context);
     default:
-      return new Motorcycle(name, context);
+      return new Bike(name, context);
   }
 };
 export default CreateTransport;

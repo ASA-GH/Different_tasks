@@ -4,7 +4,7 @@ import { Form } from "react-bootstrap";
 const AdditionalParameter = (props) => {
   const { value, race } = props;
   switch (value) {
-    case "Motorcycle":
+    case "Bike":
       return (
         <Form.Check
           type="switch"

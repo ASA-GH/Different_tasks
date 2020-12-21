@@ -11,7 +11,7 @@ import {
 const ListMembers = (members, distance, onClose) => {
   const Parameter = (member) => {
     switch (member.type) {
-      case "Motorcycle":
+      case "Bike":
         return `Stroller : ${member.stroller === false ? "No" : "Yes"}`;
       case "Car":
         return `People : ${member.peopleCount}`;

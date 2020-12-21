@@ -5,8 +5,8 @@ import Options from "./Options";
 
 const Navigation = (props) => {
   const { members, race, AddMember } = props;
-  const [value, setValue] = useState("Motorcycle");
-  let option = ["Motorcycle", "Car", "Truck"];
+  const [value, setValue] = useState("Bike");
+  let option = ["Bike", "Car", "Truck"];
 
   const GetValue = ({ target: { value } }) => {
     setValue(value);

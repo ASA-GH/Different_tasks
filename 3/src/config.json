@@ -2,7 +2,7 @@
   "members": [
     {
       "name": "test1",
-      "type": "Motorcycle",
+      "type": "Bike",
       "context": { "stroller": false }
     },
     {
