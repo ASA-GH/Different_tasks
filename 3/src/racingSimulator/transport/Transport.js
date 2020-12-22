@@ -21,7 +21,7 @@ export default class Transport {
 
     if (this.IsCrash()) return "danger";
 
-    return "info";
+    return "primary";
   }
 
   GetColor() {
@@ -29,7 +29,7 @@ export default class Transport {
 
     if (this.IsCrash()) return "bg-danger text-white";
 
-    return "bg-info text-dark";
+    return "bg-primary text-dark";
   }
   Prepare() {
     this.time = 0;

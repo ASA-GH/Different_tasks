@@ -29,7 +29,7 @@ const Navigation = (props) => {
         disabled={race}
       />
       <br />
-      <Form.Control as="select" name="type" onChange={GetValue} disabled={race}>
+      <Form.Control as="select" name="type" onChange={GetValue} disabled={race} variant="primary">
         <Options option={option} />
       </Form.Control>
       <br />

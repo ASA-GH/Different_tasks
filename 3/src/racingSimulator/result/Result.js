@@ -25,7 +25,7 @@ const Result = (props) => {
         </Table>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={HandleClose}>
+        <Button variant="danger" onClick={HandleClose}>
           Close
         </Button>
         <Button variant="success" onClick={() => HandlerStart(value)}>
