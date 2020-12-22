@@ -6,16 +6,16 @@ export default class Car extends Transport {
   constructor(name, context) {
     super(name);
     this.name = name === "" ? "Car" : name;
-    this.peopleCount = this.GetPeopleCount(context)
+    this.peopleCount = this.GetPeopleCount(context);
     this.repairTime = 4;
     this.speed = 100;
     this.probability = 0.05;
     this.type = "Car";
     this.wheelsCount = 4;
   }
-  GetPeopleCount(context){
+  GetPeopleCount(context) {
     if (context.peopleCount && context.peopleCount > 0)
-     return context.peopleCount > 10 ? 10 : context.peopleCount;
-    return 1
+      return context.peopleCount > 10 ? 10 : context.peopleCount;
+    return 1;
   }
 }

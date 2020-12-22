@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Modal, Table } from "react-bootstrap";
 import Tbody from "./Tbody";
+import "../../App.scss";
 
 const Result = (props) => {
   const { members, show, HandleClose, HandlerStart, value } = props;
@@ -10,7 +11,7 @@ const Result = (props) => {
       <Modal.Header closeButton>
         <Modal.Title>Race Results Table</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body className="modalBody">
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -28,7 +29,7 @@ const Result = (props) => {
           Close
         </Button>
         <Button variant="success" onClick={() => HandlerStart(value)}>
-          Lap start
+          Restart
         </Button>
       </Modal.Footer>
     </Modal>

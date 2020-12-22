@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button, Row, Col, Container, Moda } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import "./App.scss";
 import config from "./config.json";
 import CreateTransport from "./racingSimulator/transport/CreateTransport";
@@ -8,7 +8,6 @@ import ListMembers from "./racingSimulator/race/ListMembers";
 import Start from "./racingSimulator/race/Race";
 import Navigation from "./racingSimulator/race/navigation/Navigation";
 import ControlPanel from "./racingSimulator/race/ControlPanel";
-import Result from "./racingSimulator/result/Result";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -17,8 +16,7 @@ function App() {
   const [time, setTime] = useState(0);
   const [distance, setDistance] = useState(0);
 
-  const Finished = (_members, context) => {
-    console.log("Finished");
+  const Finished = (_members) => {
     setRace(false);
     setShow(true);
     setMembers(_members);
@@ -75,7 +73,13 @@ function App() {
       setMembers(GetMembers(config));
       return true;
     }
-    return ListMembers(members, distance, DeleteMember);
+    return (
+      <ListMembers
+        members={members}
+        distance={distance}
+        onClose={DeleteMember}
+      />
+    );
   };
 
   const AddMember = (members, data) => {
@@ -91,18 +95,20 @@ function App() {
 
   return useMemo(() => {
     return (
-      <Container style={{ minHeight: "100vh" }}>
+      <Container className="mainContainer">
         <Row>
-          <Col style={{ height: "100%" }}>
+          <Col>
             <Row>
               <Col>
                 <br />
-                <h1 className="md-center">Member</h1>
+                <h1 className="md-center">Members</h1>
                 <br />
               </Col>
             </Row>
             <Row>
-              <Col>{init(members, config)}</Col>
+              <Container className="membersView">
+                {init(members, config)}
+              </Container>
             </Row>
           </Col>
           <Col>

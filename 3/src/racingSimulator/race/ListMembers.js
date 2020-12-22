@@ -1,4 +1,5 @@
 import React from "react";
+import "../../App.scss";
 import {
   Container,
   Row,
@@ -8,7 +9,9 @@ import {
   ProgressBar,
 } from "react-bootstrap";
 
-const ListMembers = (members, distance, onClose) => {
+const ListMembers = (props) => {
+  const { members, distance, onClose } = props;
+
   const Parameter = (member) => {
     switch (member.type) {
       case "Bike":
@@ -43,6 +46,7 @@ const ListMembers = (members, distance, onClose) => {
                 max={distance}
                 variant={member.GetVariant()}
                 now={member.distance}
+                className="progressBar"
               />
             </Col>
           </Row>

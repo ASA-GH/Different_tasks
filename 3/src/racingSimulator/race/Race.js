@@ -9,7 +9,6 @@ const CompareMembers = (member1, member2) => {
 
 const RunRace = (members, context, resolve) => {
   context.time = context.time + 1;
-  console.log(context.time);
 
   let allFinished = true;
   for (const index in members) {
@@ -30,7 +29,7 @@ const RunRace = (members, context, resolve) => {
 
   if (allFinished) {
     StopTimer(context.timer);
-    resolve(members, context);
+    resolve(members);
   } else {
     context.update(members, context.time);
   }
@@ -51,8 +50,8 @@ const Start = (members, finished, context) => {
     });
 
   promise(members, context)
-    .then((members, context) => finished(members, context))
-    .catch((members, context) => {
+    .then((members) => finished(members))
+    .catch((members) => {
       console.log("error");
     });
 };

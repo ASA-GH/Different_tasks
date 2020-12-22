@@ -11,7 +11,7 @@ const AdditionalParameter = (props) => {
           disabled={race}
           id="custom-switch"
           label="Stroller"
-          name="stroller"
+          name="Stroller"
         />
       );
     case "Car":
@@ -22,7 +22,7 @@ const AdditionalParameter = (props) => {
           disabled={race}
           type="number"
           name="peopleCount"
-          placeholder="people"
+          placeholder="People"
         />
       );
     case "Truck":
@@ -30,7 +30,7 @@ const AdditionalParameter = (props) => {
         <Form.Control
           type="number"
           name="cargoWeight"
-          placeholder="cargo"
+          placeholder="Cargo"
           min={0}
           max={450000}
           disabled={race}
