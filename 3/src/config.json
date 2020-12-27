@@ -4,17 +4,7 @@
       "name": "Yamaha",
       "type": "Bike",
       "context": { "stroller": false }
-    },
-    {
-      "name": "Lamborghini",
-      "type": "Car",
-      "context": { "peopleCount": 2 }
-    },
-    {
-      "name": "Dongfeng",
-      "type": "Truck",
-      "context": { "cargoWeight": 100 }
     }
   ],
-  "distance": "500"
+  "distance": "360"
 }

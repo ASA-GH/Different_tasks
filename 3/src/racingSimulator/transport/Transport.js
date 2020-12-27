@@ -24,6 +24,14 @@ export default class Transport {
     return "primary";
   }
 
+  GetFace() {
+    if (this.isStop) return "face12";
+
+    if (this.IsCrash()) return "face11";
+
+    return "face10";
+  }
+
   GetColor() {
     if (this.isStop) return "bg-success text-white";
 
