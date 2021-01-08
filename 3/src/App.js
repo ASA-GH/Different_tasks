@@ -9,7 +9,6 @@ import Start from "./racingSimulator/race/Race";
 import Navigation from "./racingSimulator/race/navigation/Navigation";
 import ControlPanel from "./racingSimulator/race/ControlPanel";
 import RaceView from "./racingSimulator/race/RaceView";
-import RaceView1 from "./racingSimulator/race/RaceView1";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -114,19 +113,45 @@ function App() {
             </Row>
           </Col>
           <Col>
-            <ControlPanel
-              race={race}
-              HandlerStart={HandlerStart}
-              distance={distance}
-              members={members}
-              show={show}
-              HandleClose={HandleClose}
-            />
-            {/* <RaceView members={members} distance={distance} /> */}
-            <RaceView1 members={members} distance={distance} />
+            <Row>
+              <Col>
+                <br />
+                <h1 className="md-center">Race control</h1>
+                <br />
+              </Col>
+            </Row>
+                <RaceView members={members} distance={distance} />
+            <Row>
+              <Col>
+                <br />
+                <ControlPanel
+                  race={race}
+                  HandlerStart={HandlerStart}
+                  distance={distance}
+                  members={members}
+                  show={show}
+                  HandleClose={HandleClose}
+                />
+              </Col>
+            </Row>
           </Col>
           <Col>
-            <Navigation members={members} AddMember={AddMember} race={race} />
+            <Row>
+              <Col>
+                <br />
+                <h1 className="md-center">Add member</h1>
+                <br />
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Navigation
+                  members={members}
+                  AddMember={AddMember}
+                  race={race}
+                />
+              </Col>
+            </Row>
           </Col>
         </Row>
       </Container>

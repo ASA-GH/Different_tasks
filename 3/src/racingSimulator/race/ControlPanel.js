@@ -13,9 +13,6 @@ const ControlPanel = (props) => {
   };
   return (
     <Form onSubmit={onFormSubmit}>
-      <br />
-      <h1 className="md-center">Race control</h1>
-      <br />
       <Form.Control
         onChange={onInput}
         value={value}

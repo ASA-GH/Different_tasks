@@ -19,9 +19,6 @@ const Navigation = (props) => {
 
   return (
     <Form onSubmit={onFormSubmit}>
-      <br />
-      <h1 className="md-center">Add member</h1>
-      <br />
       <Form.Control
         type="text"
         name="name"

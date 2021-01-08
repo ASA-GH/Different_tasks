@@ -25,11 +25,11 @@ export default class Transport {
   }
 
   GetFace() {
-    if (this.isStop) return "face12";
+    if (this.isStop) return "#008c45";
 
-    if (this.IsCrash()) return "face11";
+    if (this.IsCrash()) return "#cd212a";
 
-    return "face10";
+    return "#03a9f4";
   }
 
   GetColor() {
