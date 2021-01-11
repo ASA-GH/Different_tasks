@@ -5,7 +5,7 @@ import "../../App.scss";
 const RaceView = (props) => {
   const { members, distance } = props;
   let outerRadius = 150;
-  let innerRadius = 100;
+  let innerRadius = 120;
   let widthSvg = 310;
   let heightSvg = 310;
 
@@ -24,11 +24,16 @@ const RaceView = (props) => {
     return (outerRadius - innerRadius) / 2 + innerRadius;
   };
   const GetAngle = (member, distance, angle0) => {
-    let angle = (member.distance * 2 * Math.PI) / distance + angle0;
+    let angle = (member.distance * 360) / distance + angle0;
     if (angle === Infinity) {
       angle = 0;
     }
-    return angle;
+    let obj = {};
+    let deg = angle;
+    let rad = (angle * Math.PI) / 180;
+    obj.deg = deg;
+    obj.rad = rad;
+    return obj;
   };
   const PositionX = (
     member,
@@ -36,14 +41,12 @@ const RaceView = (props) => {
     outerRadius,
     innerRadius,
     widthSvg,
-    widthUse,
     angle0
   ) => {
-    let cos = Math.cos(GetAngle(member, distance, angle0));
+    let cos = Math.cos(GetAngle(member, distance, angle0).rad);
     let x = CenterCoordinateX(widthSvg);
     let radius = Radius(outerRadius, innerRadius);
-    let xUse = widthUse / 2;
-    return x + radius * cos - xUse;
+    return x + radius * cos;
   };
   const PositionY = (
     member,
@@ -51,14 +54,12 @@ const RaceView = (props) => {
     outerRadius,
     innerRadius,
     heightSvg,
-    heightUse,
     angle0
   ) => {
-    let sin = Math.sin(GetAngle(member, distance, angle0));
+    let sin = Math.sin(GetAngle(member, distance, angle0).rad);
     let y = CenterCoordinateY(heightSvg);
     let radius = Radius(outerRadius, innerRadius);
-    let yUse = heightUse / 2;
-    return y + radius * sin - yUse;
+    return y + radius * sin;
   };
   let GetDefs = () => {
     return (
@@ -97,34 +98,37 @@ const RaceView = (props) => {
     angle0
   ) => {
     return (
-      <use
-        xlinkHref={`#${member.type}`}
-        stroke={member.GetFace()}
-        stroke-width="0.75"
-        fill="none"
-        height={heightUse}
-        width={widthUse}
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        x={PositionX(
+      <g
+        transform={`translate(${PositionX(
           member,
           distance,
           outerRadius,
           innerRadius,
           widthSvg,
-          widthUse,
           angle0
-        )}
-        y={PositionY(
+        )}, ${PositionY(
           member,
           distance,
           outerRadius,
           innerRadius,
           heightSvg,
-          heightUse,
           angle0
-        )}
-      />
+        )})`}
+      >
+        <use
+          xlinkHref={`#${member.type}`}
+          stroke={member.GetFace()}
+          stroke-width="0.75"
+          fill="none"
+          height={heightUse}
+          width={widthUse}
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          x={-(widthUse / 2)}
+          y={-(heightUse / 2)}
+          transform={`rotate(${GetAngle(member, distance, angle0).deg + 90})`}
+        />
+      </g>
     );
   };
 
@@ -152,7 +156,7 @@ const RaceView = (props) => {
                   fill="#fff"
                   id="svg_1"
                   r={`${outerRadius}`}
-                  stroke="#000000"
+                  stroke="#fff"
                   stroke-width="1"
                 />
                 <circle
