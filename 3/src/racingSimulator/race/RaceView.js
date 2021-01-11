@@ -25,7 +25,7 @@ const RaceView = (props) => {
   };
   const GetAngle = (member, distance, angle0) => {
     let angle = (member.distance * 360) / distance + angle0;
-    if (angle === Infinity) {
+    if (angle === Infinity || !angle) {
       angle = 0;
     }
     let obj = {};
