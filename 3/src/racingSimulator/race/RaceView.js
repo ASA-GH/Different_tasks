@@ -1,5 +1,10 @@
 import React from "react";
 import { Row, Col, Container } from "react-bootstrap";
+import SymbolPlanet from "./SymbolPlanet";
+import SymbolBike from "../transport/transportView/SymbolBike";
+import SymbolCar from "../transport/transportView/SymbolCar";
+import SymbolTruck from "../transport/transportView/SymbolTruck";
+
 import "../../App.scss";
 
 const RaceView = (props) => {
@@ -64,29 +69,14 @@ const RaceView = (props) => {
   let GetDefs = () => {
     return (
       <defs>
-        <symbol id="Car" viewBox="0 0 24 24" height="40px" width="40px">
-          <path d="M3 12L5 7H7M3 12H2V17H3M3 12H7M18 12L16 7H12M18 12H20C21.1046 12 22 12.8954 22 14V17H20M18 12H12M7 17H16M7 7V12M7 7H12M7 12H12M12 12V7" />
-          <circle cx="5" cy="17" r="2" />
-          <circle cx="17" cy="17" r="2" />
-        </symbol>
-        <symbol id="Bike" viewBox="0 0 24 24">
-          <g>
-            <circle cx="14" cy="6" r="1" />
-            <path d="M12 18V14L9 12L12 9L14 11L16 12" />
-            <circle cx="6" cy="17" r="3" />
-            <circle cx="18" cy="17" r="3" />
-          </g>
-        </symbol>
-        <symbol id="Truck" viewBox="0 0 24 24" height="40px" width="40px">
-          <path d="M4 17H2V7H15V17H8" />
-          <path d="M20 17H22V12.5556L20 9H15V17H16" />
-          <circle cx="6" cy="17" r="2" />
-          <circle cx="18" cy="17" r="2" />
-        </symbol>
+        <SymbolBike/>
+        <SymbolCar/>
+        <SymbolTruck/>
+        <SymbolPlanet/>
       </defs>
     );
   };
-  let GetUse = (
+  const GetUseTransport = (
     member,
     distance,
     outerRadius,
@@ -118,7 +108,7 @@ const RaceView = (props) => {
         <use
           xlinkHref={`#${member.type}`}
           stroke={member.GetFace()}
-          stroke-width="0.75"
+          stroke-width="1"
           fill="none"
           height={heightUse}
           width={widthUse}
@@ -127,6 +117,26 @@ const RaceView = (props) => {
           x={-(widthUse / 2)}
           y={-(heightUse / 2)}
           transform={`rotate(${GetAngle(member, distance, angle0).deg + 90})`}
+        />
+      </g>
+    );
+  };
+
+  const GetUsePlanet = (innerRadius, widthSvg, heightSvg) => {
+    return (
+      <g
+        transform={`translate(${CenterCoordinateX(widthSvg)},
+         ${CenterCoordinateY(heightSvg)})`}
+      >
+        <use
+          xlinkHref="#Planet"
+          stroke="none"
+          stroke-width="0.75"
+          fill="#000"
+          height={innerRadius * 2}
+          width={innerRadius * 2}
+          x={-innerRadius}
+          y={-innerRadius}
         />
       </g>
     );
@@ -165,11 +175,12 @@ const RaceView = (props) => {
                   fill="#fff"
                   id="svg_2"
                   r={`${innerRadius}`}
-                  stroke="#000000"
+                  stroke="#000"
                   stroke-width="1"
                 />
+                {GetUsePlanet(innerRadius, widthSvg, heightSvg)}
                 {members.map((member) =>
-                  GetUse(
+                  GetUseTransport(
                     member,
                     distance,
                     outerRadius,
