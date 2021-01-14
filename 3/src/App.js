@@ -8,7 +8,7 @@ import ListMembers from "./racingSimulator/race/ListMembers";
 import Start from "./racingSimulator/race/Race";
 import Navigation from "./racingSimulator/race/navigation/Navigation";
 import ControlPanel from "./racingSimulator/race/ControlPanel";
-import RaceView from "./racingSimulator/race/RaceView";
+import ContainerRaceView from "./racingSimulator/race/raceView/ContainerRaceView";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -120,7 +120,7 @@ function App() {
                 <br />
               </Col>
             </Row>
-                <RaceView members={members} distance={distance} />
+                <ContainerRaceView members={members} distance={distance} />
             <Row>
               <Col>
                 <br />

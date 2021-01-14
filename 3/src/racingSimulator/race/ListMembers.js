@@ -37,7 +37,6 @@ const ListMembers = (props) => {
         <strong className="mr-auto"> {member.name} </strong>
       </Toast.Header>
       <Toast.Body>
-        {" "}
         <Container>
           <Row>
             <Col>
