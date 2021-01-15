@@ -32,19 +32,19 @@ const RaceView = (props) => {
               <circle
                 cx={`${x0}`}
                 cy={`${y0}`}
-                fill="#fff"
-                id="svg_1"
+                fill="none"
+                id="svg1"
                 r={`${outerRadius}`}
-                stroke="#fff"
+                stroke="none"
                 stroke-width="1"
               />
               <circle
                 cx={`${x0}`}
                 cy={`${y0}`}
-                fill="#fff"
-                id="svg_2"
+                fill="none"
+                id="svg2"
                 r={`${innerRadius}`}
-                stroke="#000"
+                stroke="#A9A9A9"
                 stroke-width="1"
               />
               <GetUsePlanet innerRadius={innerRadius} x0={x0} y0={y0} />

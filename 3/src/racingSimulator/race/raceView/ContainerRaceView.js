@@ -41,30 +41,30 @@ const ContainerRaceView = (props) => {
     obj.y = y0 + radius * sin;
     return obj;
   };
- const GetRotate = (member, distance, angle0) =>{
-   return GetAngle(member, distance, angle0).deg + 90
- }
+  const GetRotate = (member, distance, angle0) => {
+    return GetAngle(member, distance, angle0).deg + 90;
+  };
   let radius = Radius(outerRadius, innerRadius);
   let x0 = CenterCoordinateX(widthSvg);
   let y0 = CenterCoordinateY(heightSvg);
-
   return (
     <RaceView
-    members={members} 
-    distance={distance} 
-    outerRadius={outerRadius}
-    innerRadius={innerRadius}
-    widthSvg={widthSvg}
-    heightSvg={heightSvg}
-    widthUse={widthUse}
-    heightUse={heightUse}
-    radius={radius}
-    x0={x0}
-    y0={y0}
-    GetAngle={GetAngle}
-    GetPosition={GetPosition}
-    GetRotate={GetRotate}
-    angle0={angle0} />
+      members={members}
+      distance={distance}
+      outerRadius={outerRadius}
+      innerRadius={innerRadius}
+      widthSvg={widthSvg}
+      heightSvg={heightSvg}
+      widthUse={widthUse}
+      heightUse={heightUse}
+      radius={radius}
+      x0={x0}
+      y0={y0}
+      GetAngle={GetAngle}
+      GetPosition={GetPosition}
+      GetRotate={GetRotate}
+      angle0={angle0}
+    />
   );
 };
 
