@@ -4,14 +4,7 @@ import "../../../App.scss";
 
 const ContainerRaceView = (props) => {
   const { members, distance } = props;
-  let outerRadius = 150;
-  let innerRadius = 120;
-  let widthSvg = 310;
-  let heightSvg = 310;
-  let widthUse = 46;
-  let heightUse = 46;
-  let angle0 = 0;
-
+  
   const CenterCoordinateX = (widthSvg) => {
     return widthSvg / 2;
   };
@@ -21,6 +14,17 @@ const ContainerRaceView = (props) => {
   const Radius = (outerRadius, innerRadius) => {
     return (outerRadius - innerRadius) / 2 + innerRadius;
   };
+  let outerRadius = 150;
+  let innerRadius = 120;
+  let widthSvg = 310;
+  let heightSvg = 310;
+  let widthUse = 46;
+  let heightUse = 46;
+  let angle0 = 0;
+  let radius = Radius(outerRadius, innerRadius);
+  let x0 = CenterCoordinateX(widthSvg);
+  let y0 = CenterCoordinateY(heightSvg);
+
   const GetAngle = (member, distance, angle0) => {
     let angle = (member.distance * 360) / distance + angle0;
     if (angle === Infinity || !angle) {
@@ -44,9 +48,6 @@ const ContainerRaceView = (props) => {
   const GetRotate = (member, distance, angle0) => {
     return GetAngle(member, distance, angle0).deg + 90;
   };
-  let radius = Radius(outerRadius, innerRadius);
-  let x0 = CenterCoordinateX(widthSvg);
-  let y0 = CenterCoordinateY(heightSvg);
   return (
     <RaceView
       members={members}
